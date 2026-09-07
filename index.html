@@ -758,8 +758,19 @@ Possible reason: price, packaging or product preference should be investigated.
   <p>Shelf Weight: <span id="tsShelf">--</span></p>
   <p>Trolley Weight: <span id="tsTrolley">--</span></p>
   <p>Product Picks: <span id="tsPicks">--</span></p>
-  <p>Product Returns: <span id="tsReturns">--</span></p>
-</div>
+  <p>Product Returns: <span id="tsReturns">--</span></p></div>
+    <script>
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(function(page) {
+    page.classList.remove('active');
+  });
+
+  const page = document.getElementById(pageId);
+  if (page) {
+    page.classList.add('active');
+  }
+}
+</script>
 
 <script>
 async function loadThingSpeakData() {
