@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Smart Retail Intelligence</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +19,8 @@ body {
     background: #f4f6f9;
     color: #1f2937;
 }
+
+/* HEADER */
 
 .header {
     background: #111827;
@@ -38,10 +42,14 @@ body {
     font-size: 13px;
 }
 
+/* MAIN CONTAINER */
+
 .container {
     display: flex;
     min-height: calc(100vh - 65px);
 }
+
+/* SIDEBAR */
 
 .sidebar {
     width: 230px;
@@ -69,10 +77,14 @@ body {
     color: white;
 }
 
+/* MAIN */
+
 .main {
     flex: 1;
     padding: 25px;
 }
+
+/* PAGE */
 
 .page {
     display: none;
@@ -81,6 +93,8 @@ body {
 .page.active {
     display: block;
 }
+
+/* PAGE TITLE */
 
 .page-title {
     margin-bottom: 20px;
@@ -94,6 +108,8 @@ body {
     color: #6b7280;
     margin-top: 5px;
 }
+
+/* CARDS */
 
 .cards {
     display: grid;
@@ -124,11 +140,15 @@ body {
     color: #16a34a;
 }
 
+/* GRID */
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
+/* PANEL */
 
 .panel {
     background: white;
@@ -141,6 +161,8 @@ body {
 .panel h3 {
     margin-bottom: 15px;
 }
+
+/* ALERTS */
 
 .alert {
     padding: 13px;
@@ -160,12 +182,15 @@ body {
     border-left-color: #dc2626;
 }
 
+/* TABLE */
+
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 13px;
     text-align: left;
     border-bottom: 1px solid #e5e7eb;
@@ -174,6 +199,8 @@ th, td {
 th {
     background: #f9fafb;
 }
+
+/* STATUS */
 
 .good {
     color: #16a34a;
@@ -189,6 +216,8 @@ th {
     color: #dc2626;
     font-weight: bold;
 }
+
+/* CAMERA */
 
 .camera {
     height: 330px;
@@ -218,6 +247,8 @@ th {
     font-size: 12px;
 }
 
+/* BARS */
+
 .bar-container {
     margin: 15px 0;
 }
@@ -241,6 +272,8 @@ th {
     border-radius: 10px;
 }
 
+/* PREDICTION */
+
 .prediction {
     background: #eff6ff;
     border-left: 5px solid #2563eb;
@@ -249,11 +282,37 @@ th {
     margin-bottom: 12px;
 }
 
-.big-number {
-    font-size: 32px;
-    font-weight: bold;
-    margin: 8px 0;
+/* THINGSPEAK */
+
+.thingspeak {
+    margin-top: 20px;
 }
+
+.ts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.ts-card {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ts-card h4 {
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.ts-value {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* FOOTER */
 
 .footer {
     text-align: center;
@@ -262,7 +321,10 @@ th {
     font-size: 13px;
 }
 
+/* MOBILE */
+
 @media(max-width: 900px) {
+
     .cards {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -270,9 +332,15 @@ th {
     .grid {
         grid-template-columns: 1fr;
     }
+
+    .ts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media(max-width: 650px) {
+
     .sidebar {
         width: 170px;
     }
@@ -284,20 +352,35 @@ th {
     .cards {
         grid-template-columns: 1fr;
     }
+
+    .ts-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header class="header">
+
     <h1>🛒 Smart Retail Intelligence</h1>
-    <div class="status">● System Online</div>
+
+    <div class="status">
+        ● System Online
+    </div>
+
 </header>
+
 
 <div class="container">
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
+
 <aside class="sidebar">
 
     <button class="active" onclick="showPage('home', this)">
@@ -326,83 +409,141 @@ th {
 
 </aside>
 
+
+<!-- ================= MAIN ================= -->
+
 <main class="main">
+
 
 <!-- ================= HOME ================= -->
 
 <section id="home" class="page active">
 
 <div class="page-title">
+
     <h2>Shopkeeper Dashboard</h2>
-    <p>Real-time smart retail monitoring system</p>
+
+    <p>
+        Real-time smart retail monitoring system
+    </p>
+
 </div>
+
 
 <div class="cards">
 
-<div class="card">
-    <h3>👥 Customers Today</h3>
-    <div class="number" id="customers">458</div>
-    <small>↑ 12% today</small>
+    <div class="card">
+
+        <h3>👥 Customers Today</h3>
+
+        <div class="number" id="customers">
+            458
+        </div>
+
+        <small>↑ 12% today</small>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>📦 Available Products</h3>
+
+        <div class="number">
+            1,245
+        </div>
+
+        <small>Inventory monitored</small>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>⚠ Low Stock</h3>
+
+        <div class="number">
+            12
+        </div>
+
+        <small>Needs attention</small>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>❌ Out of Stock</h3>
+
+        <div class="number">
+            4
+        </div>
+
+        <small>Immediate action</small>
+
+    </div>
+
 </div>
 
-<div class="card">
-    <h3>📦 Available Products</h3>
-    <div class="number">1,245</div>
-    <small>Inventory monitored</small>
-</div>
-
-<div class="card">
-    <h3>⚠ Low Stock</h3>
-    <div class="number">12</div>
-    <small>Needs attention</small>
-</div>
-
-<div class="card">
-    <h3>❌ Out of Stock</h3>
-    <div class="number">4</div>
-    <small>Immediate action</small>
-</div>
-
-</div>
 
 <div class="grid">
 
+
+<!-- STORE STATUS -->
+
 <div class="panel">
+
 <h3>📈 Today's Store Status</h3>
 
+
 <div class="bar-container">
+
 <div class="bar-label">
 <span>Customer Traffic</span>
 <span>78%</span>
 </div>
+
 <div class="bar">
 <div class="bar-fill" style="width:78%"></div>
 </div>
+
 </div>
 
+
 <div class="bar-container">
+
 <div class="bar-label">
 <span>Inventory Availability</span>
 <span>86%</span>
 </div>
+
 <div class="bar">
 <div class="bar-fill" style="width:86%"></div>
 </div>
+
 </div>
 
+
 <div class="bar-container">
+
 <div class="bar-label">
 <span>Rack Activity</span>
 <span>72%</span>
 </div>
+
 <div class="bar">
 <div class="bar-fill" style="width:72%"></div>
 </div>
+
 </div>
 
 </div>
+
+
+<!-- ALERTS -->
 
 <div class="panel">
+
 <h3>🚨 Alerts</h3>
 
 <div class="alert danger">
@@ -420,106 +561,212 @@ th {
 </div>
 
 </div>
-<!-- ThingSpeak Live Data -->
-<div style="margin:20px 0; padding:20px; border-radius:12px; background:#f5f5f5;">
-  <h2>ThingSpeak Live Data</h2>
 
-  <p>Customer Count: <span id="tsCustomer">--</span></p>
-  <p>Product Stock: <span id="tsStock">--</span></p>
-  <p>Low Stock: <span id="tsLow">--</span></p>
-  <p>Out of Stock: <span id="tsOut">--</span></p>
-  <p>Shelf Weight: <span id="tsShelf">--</span></p>
-  <p>Trolley Weight: <span id="tsTrolley">--</span></p>
-  <p>Product Picks: <span id="tsPicks">--</span></p>
-  <p>Product Returns: <span id="tsReturns">--</span></p>
+
+<!-- THINGSPEAK -->
+
+<div class="panel thingspeak">
+
+<h3>📡 ThingSpeak Live Data</h3>
+
+<p>
+Connected to Channel ID: <strong>3484436</strong>
+</p>
+
+
+<div class="ts-grid">
+
+
+<div class="ts-card">
+
+<h4>Customer Count</h4>
+
+<div class="ts-value" id="tsCustomer">
+--
 </div>
 
-<script>
-async function loadThingSpeakData() {
-  try {
-    const response = await fetch(
-      "https://api.thingspeak.com/channels/3484436/feeds.json?results=1"
-    );
+</div>
 
-    const data = await response.json();
 
-    if (data.feeds.length > 0) {
-      const feed = data.feeds[0];
+<div class="ts-card">
 
-      document.getElementById("tsCustomer").textContent = feed.field1 ?? "--";
-      document.getElementById("tsStock").textContent = feed.field2 ?? "--";
-      document.getElementById("tsLow").textContent = feed.field3 ?? "--";
-      document.getElementById("tsOut").textContent = feed.field4 ?? "--";
-      document.getElementById("tsShelf").textContent = feed.field5 ?? "--";
-      document.getElementById("tsTrolley").textContent = feed.field6 ?? "--";
-      document.getElementById("tsPicks").textContent = feed.field7 ?? "--";
-      document.getElementById("tsReturns").textContent = feed.field8 ?? "--";
-    }
-  } catch (error) {
-    console.log("ThingSpeak connection error:", error);
-  }
-}
+<h4>Product Stock</h4>
 
-loadThingSpeakData();
-setInterval(loadThingSpeakData, 15000);
-</script>
+<div class="ts-value" id="tsStock">
+--
+</div>
+
+</div>
+
+
+<div class="ts-card">
+
+<h4>Low Stock</h4>
+
+<div class="ts-value" id="tsLow">
+--
+</div>
+
+</div>
+
+
+<div class="ts-card">
+
+<h4>Out of Stock</h4>
+
+<div class="ts-value" id="tsOut">
+--
+</div>
+
+</div>
+
+
+<div class="ts-card">
+
+<h4>Shelf Weight</h4>
+
+<div class="ts-value" id="tsShelf">
+--
+</div>
+
+</div>
+
+
+<div class="ts-card">
+
+<h4>Trolley Weight</h4>
+
+<div class="ts-value" id="tsTrolley">
+--
+</div>
+
+</div>
+
+
+<div class="ts-card">
+
+<h4>Product Picks</h4>
+
+<div class="ts-value" id="tsPicks">
+--
+</div>
+
+</div>
+
+
+<div class="ts-card">
+
+<h4>Product Returns</h4>
+
+<div class="ts-value" id="tsReturns">
+--
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
 </section>
 
 
-<!-- ================= LIVE ================= -->
+<!-- ================= LIVE MONITORING ================= -->
 
 <section id="live" class="page">
 
 <div class="page-title">
+
 <h2>📹 Live Monitoring</h2>
-<p>AI camera and customer activity monitoring</p>
+
+<p>
+AI camera and customer activity monitoring
+</p>
+
 </div>
 
+
 <div class="grid">
+
 
 <div class="panel">
 
 <div class="camera">
 
-<div class="live-dot">● LIVE</div>
+<div class="live-dot">
+● LIVE
+</div>
+
 
 <div class="camera-box">
+
 <h2>📹 CAMERA VIEW</h2>
+
 <p>AI Camera Feed</p>
+
 <p style="margin-top:10px;">
 Demo mode – camera will be connected later
 </p>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 
 <div class="panel">
 
-<h3>AI Detection</h3>
+<h3>🧠 AI Detection</h3>
+
 
 <div class="cards" style="grid-template-columns:1fr 1fr;">
 
+
 <div class="card">
+
 <h3>👤 Customers</h3>
-<div class="number">8</div>
+
+<div class="number">
+8
 </div>
 
+</div>
+
+
 <div class="card">
+
 <h3>🛒 Trolleys</h3>
-<div class="number">3</div>
+
+<div class="number">
+3
 </div>
 
+</div>
+
+
 <div class="card">
+
 <h3>📦 Products</h3>
-<div class="number">24</div>
+
+<div class="number">
+24
 </div>
 
-<div class="card">
-<h3>🏪 Active Racks</h3>
-<div class="number">5</div>
 </div>
+
+
+<div class="card">
+
+<h3>🏪 Active Racks</h3>
+
+<div class="number">
+5
+</div>
+
+</div>
+
 
 </div>
 
@@ -535,59 +782,86 @@ Demo mode – camera will be connected later
 <section id="inventory" class="page">
 
 <div class="page-title">
+
 <h2>📦 Inventory Monitoring</h2>
-<p>Smart shelf and product stock status</p>
+
+<p>
+Smart shelf and product stock status
+</p>
+
 </div>
+
 
 <div class="panel">
 
 <table>
 
 <thead>
+
 <tr>
+
 <th>Product</th>
 <th>Rack</th>
 <th>Stock</th>
 <th>Status</th>
+
 </tr>
+
 </thead>
+
 
 <tbody>
 
+
 <tr>
+
 <td>Milk</td>
 <td>Rack 01</td>
 <td>35</td>
 <td class="good">● Good</td>
+
 </tr>
 
+
 <tr>
+
 <td>Biscuits</td>
 <td>Rack 02</td>
 <td>8</td>
 <td class="low">● Low Stock</td>
+
 </tr>
 
+
 <tr>
+
 <td>Juice</td>
 <td>Rack 03</td>
 <td>0</td>
 <td class="out">● Out of Stock</td>
+
 </tr>
 
+
 <tr>
+
 <td>Rice</td>
 <td>Rack 04</td>
 <td>42</td>
 <td class="good">● Good</td>
+
 </tr>
 
+
 <tr>
+
 <td>Soap</td>
 <td>Rack 05</td>
 <td>18</td>
 <td class="good">● Good</td>
+
 </tr>
+
 
 </tbody>
 
@@ -595,18 +869,25 @@ Demo mode – camera will be connected later
 
 </div>
 
+
 <div class="grid">
 
+
 <div class="panel">
+
 <h3>⚖️ Smart Shelf Weight</h3>
 
 <p>Shelf 01: <strong>18.5 kg</strong></p>
+
 <p>Shelf 02: <strong>8.2 kg</strong></p>
+
 <p>Shelf 03: <strong>2.1 kg</strong></p>
 
 </div>
 
+
 <div class="panel">
+
 <h3>🚨 Stock Alerts</h3>
 
 <div class="alert danger">
@@ -629,57 +910,81 @@ Biscuits – Reorder required
 <section id="silent" class="page">
 
 <div class="page-title">
+
 <h2>🤫 Silent Demand</h2>
-<p>Products customers show interest in but do not purchase</p>
+
+<p>
+Products customers show interest in but do not purchase
+</p>
+
 </div>
+
 
 <div class="panel">
 
 <table>
 
 <thead>
+
 <tr>
+
 <th>Product</th>
 <th>Picked</th>
 <th>Returned</th>
 <th>Interest</th>
 <th>Conversion</th>
+
 </tr>
+
 </thead>
+
 
 <tbody>
 
+
 <tr>
+
 <td>Milk</td>
 <td>20</td>
 <td>8</td>
 <td>High</td>
 <td>60%</td>
+
 </tr>
 
+
 <tr>
+
 <td>Biscuits</td>
 <td>15</td>
 <td>10</td>
 <td>High</td>
 <td>33%</td>
+
 </tr>
 
+
 <tr>
+
 <td>Juice</td>
 <td>9</td>
 <td>7</td>
 <td>Medium</td>
 <td>22%</td>
+
 </tr>
 
+
 <tr>
+
 <td>Chocolate</td>
 <td>18</td>
 <td>5</td>
 <td>High</td>
 <td>72%</td>
+
 </tr>
+
 
 </tbody>
 
@@ -687,14 +992,20 @@ Biscuits – Reorder required
 
 </div>
 
+
 <div class="panel">
 
 <h3>💡 Silent Demand Insight</h3>
 
+
 <div class="prediction">
+
 <strong>Biscuits</strong> have high customer interest but low purchase conversion.
+
 <br><br>
+
 Possible reason: price, packaging or product preference should be investigated.
+
 </div>
 
 </div>
@@ -707,144 +1018,549 @@ Possible reason: price, packaging or product preference should be investigated.
 <section id="analysis" class="page">
 
 <div class="page-title">
+
 <h2>📊 Retail Analysis</h2>
-<p>Customer and product demand analytics</p>
+
+<p>
+Customer and product demand analytics
+</p>
+
 </div>
 
+
 <div class="grid">
+
+
+<!-- CUSTOMER TRAFFIC -->
 
 <div class="panel">
 
 <h3>👥 Customer Traffic</h3>
 
+
 <div class="bar-container">
+
 <div class="bar-label">
-<span>9 AM</span><span>35</span>
+
+<span>9 AM</span>
+<span>35</span>
+
 </div>
+
 <div class="bar">
+
 <div class="bar-fill" style="width:30%"></div>
-</div>
+
 </div>
 
-<div class="bar-container">
-<div class="bar-label">
-<span>11 AM</span><span>85</span>
 </div>
+
+
+<div class="bar-container">
+
+<div class="bar-label">
+
+<span>11 AM</span>
+<span>85</span>
+
+</div>
+
 <div class="bar">
+
 <div class="bar-fill" style="width:70%"></div>
-</div>
+
 </div>
 
-<div class="bar-container">
-<div class="bar-label">
-<span>1 PM</span><span>120</span>
 </div>
+
+
+<div class="bar-container">
+
+<div class="bar-label">
+
+<span>1 PM</span>
+<span>120</span>
+
+</div>
+
 <div class="bar">
+
 <div class="bar-fill" style="width:100%"></div>
+
 </div>
+
 </div>
+
 
 <div class="bar-container">
+
 <div class="bar-label">
-<span>5 PM</span><span>95</span>
+
+<span>5 PM</span>
+<span>95</span>
+
 </div>
-    
+
+<div class="bar">
+
+<div class="bar-fill" style="width:80%"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT DEMAND -->
+
+<div class="panel">
+
+<h3>📦 Product Demand</h3>
+
+
+<div class="bar-container">
+
+<div class="bar-label">
+
+<span>Milk</span>
+<span>90%</span>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-fill" style="width:90%"></div>
+
+</div>
+
+</div>
+
+
+<div class="bar-container">
+
+<div class="bar-label">
+
+<span>Biscuits</span>
+<span>75%</span>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-fill" style="width:75%"></div>
+
+</div>
+
+</div>
+
+
+<div class="bar-container">
+
+<div class="bar-label">
+
+<span>Juice</span>
+<span>60%</span>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-fill" style="width:60%"></div>
+
+</div>
+
+</div>
+
+
+<div class="bar-container">
+
+<div class="bar-label">
+
+<span>Rice</span>
+<span>50%</span>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-fill" style="width:50%"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>🚀 Fast Selling Products</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Rank</th>
+<th>Product</th>
+<th>Demand</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+<td>Milk</td>
+<td>90%</td>
+<td class="good">High</td>
+
+</tr>
+
+
+<tr>
+
+<td>2</td>
+<td>Biscuits</td>
+<td>75%</td>
+<td class="good">High</td>
+
+</tr>
+
+
+<tr>
+
+<td>3</td>
+<td>Juice</td>
+<td>60%</td>
+<td class="low">Medium</td>
+
+</tr>
+
+
+<tr>
+
+<td>4</td>
+<td>Rice</td>
+<td>50%</td>
+<td class="low">Medium</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
 </section>
-    
+
+
+<!-- ================= AI PREDICTION ================= -->
+
 <section id="prediction" class="page">
-  <h2>AI Prediction</h2>
 
-  <p>AI-based demand forecasting and smart reorder recommendation.</p>
+<div class="page-title">
 
-  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:20px;">
+<h2>🤖 AI Prediction</h2>
 
-    <div style="padding:20px; background:white; border-radius:12px; box-shadow:0 2px 8px #ccc;">
-      <h3>Milk</h3>
-      <p>Current Stock: <strong>120</strong></p>
-      <p>Predicted Demand: <strong>150</strong></p>
-      <p>Recommended Order: <strong>30</strong></p>
-    </div>
+<p>
+AI-based demand forecasting and smart reorder recommendation
+</p>
 
-    <div style="padding:20px; background:white; border-radius:12px; box-shadow:0 2px 8px #ccc;">
-      <h3>Biscuits</h3>
-      <p>Current Stock: <strong>80</strong></p>
-      <p>Predicted Demand: <strong>110</strong></p>
-      <p>Recommended Order: <strong>30</strong></p>
-    </div>
+</div>
 
-    <div style="padding:20px; background:white; border-radius:12px; box-shadow:0 2px 8px #ccc;">
-      <h3>Rice</h3>
-      <p>Current Stock: <strong>200</strong></p>
-      <p>Predicted Demand: <strong>170</strong></p>
-      <p>Recommended Order: <strong>0</strong></p>
-    </div>
 
-  </div>
+<div class="cards">
+
+
+<div class="card">
+
+<h3>🥛 Milk</h3>
+
+<p>Current Stock</p>
+
+<div class="number">
+120
+</div>
+
+<p>
+Predicted Demand:
+<strong>150</strong>
+</p>
+
+<p class="low">
+Recommended Order: 30
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🍪 Biscuits</h3>
+
+<p>Current Stock</p>
+
+<div class="number">
+80
+</div>
+
+<p>
+Predicted Demand:
+<strong>110</strong>
+</p>
+
+<p class="low">
+Recommended Order: 30
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🍚 Rice</h3>
+
+<p>Current Stock</p>
+
+<div class="number">
+200
+</div>
+
+<p>
+Predicted Demand:
+<strong>170</strong>
+</p>
+
+<p class="good">
+Recommended Order: 0
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🧼 Soap</h3>
+
+<p>Current Stock</p>
+
+<div class="number">
+60
+</div>
+
+<p>
+Predicted Demand:
+<strong>45</strong>
+</p>
+
+<p class="good">
+Recommended Order: 0
+</p>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>🧠 AI Recommendations</h3>
+
+
+<div class="prediction">
+
+<strong>Milk:</strong>
+
+Demand is expected to increase.
+
+Order 30 additional units.
+
+</div>
+
+
+<div class="prediction">
+
+<strong>Biscuits:</strong>
+
+High customer interest detected.
+
+Order 30 additional units.
+
+</div>
+
+
+<div class="prediction">
+
+<strong>Rice:</strong>
+
+Current stock is sufficient.
+
+No immediate reorder required.
+
+</div>
+
+
+<div class="prediction">
+
+<strong>Soap:</strong>
+
+Current stock is sufficient.
+
+No immediate reorder required.
+
+</div>
+
+</div>
 
 </section>
-    
-<!-- ThingSpeak Live Data -->
-<div style="margin:20px 0; padding:20px; border-radius:12px; background:#f5f5f5;">
-  <h2>ThingSpeak Live Data</h2>
-  <p>Customer Count: <span id="tsCustomer">--</span></p>
-  <p>Product Stock: <span id="tsStock">--</span></p>
-  <p>Low Stock: <span id="tsLow">--</span></p>
-  <p>Out of Stock: <span id="tsOut">--</span></p>
-  <p>Shelf Weight: <span id="tsShelf">--</span></p>
-  <p>Trolley Weight: <span id="tsTrolley">--</span></p>
-  <p>Product Picks: <span id="tsPicks">--</span></p>
-  <p>Product Returns: <span id="tsReturns">--</span></p></div>
-    <script>
-function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(function(page) {
-    page.classList.remove('active');
-  });
 
-  const page = document.getElementById(pageId);
-  if (page) {
-    page.classList.add('active');
-  }
-}
-</script>
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer">
+
+Smart Retail Intelligence System • AI + IoT + Computer Vision
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
-async function loadThingSpeakData() {
-  try {
-    const response = await fetch(
-      "https://api.thingspeak.com/channels/3484436/feeds.json?results=1"
-    );
 
-    const data = await response.json();
+/* PAGE NAVIGATION */
 
-    if (data.feeds.length > 0) {
-      const feed = data.feeds[0];
+function showPage(pageId, button) {
 
-      document.getElementById("tsCustomer").textContent = feed.field1 ?? "--";
-      document.getElementById("tsStock").textContent = feed.field2 ?? "--";
-      document.getElementById("tsLow").textContent = feed.field3 ?? "--";
-      document.getElementById("tsOut").textContent = feed.field4 ?? "--";
-      document.getElementById("tsShelf").textContent = feed.field5 ?? "--";
-      document.getElementById("tsTrolley").textContent = feed.field6 ?? "--";
-      document.getElementById("tsPicks").textContent = feed.field7 ?? "--";
-      document.getElementById("tsReturns").textContent = feed.field8 ?? "--";
+    document.querySelectorAll(".page").forEach(function(page) {
+
+        page.classList.remove("active");
+
+    });
+
+
+    document.querySelectorAll(".sidebar button").forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    const selectedPage = document.getElementById(pageId);
+
+
+    if (selectedPage) {
+
+        selectedPage.classList.add("active");
+
     }
-  } catch (error) {
-    console.log("ThingSpeak connection error:", error);
-  }
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
 }
+
+
+/* THINGSPEAK DATA */
+
+async function loadThingSpeakData() {
+
+    try {
+
+        const response = await fetch(
+            "https://api.thingspeak.com/channels/3484436/feeds.json?results=1"
+        );
+
+
+        const data = await response.json();
+
+
+        if (data.feeds && data.feeds.length > 0) {
+
+            const feed = data.feeds[0];
+
+
+            document.getElementById("tsCustomer").textContent =
+                feed.field1 ?? "--";
+
+
+            document.getElementById("tsStock").textContent =
+                feed.field2 ?? "--";
+
+
+            document.getElementById("tsLow").textContent =
+                feed.field3 ?? "--";
+
+
+            document.getElementById("tsOut").textContent =
+                feed.field4 ?? "--";
+
+
+            document.getElementById("tsShelf").textContent =
+                feed.field5 ?? "--";
+
+
+            document.getElementById("tsTrolley").textContent =
+                feed.field6 ?? "--";
+
+
+            document.getElementById("tsPicks").textContent =
+                feed.field7 ?? "--";
+
+
+            document.getElementById("tsReturns").textContent =
+                feed.field8 ?? "--";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "ThingSpeak connection error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* LOAD DATA */
 
 loadThingSpeakData();
-setInterval(loadThingSpeakData, 15000);
+
+
+/* UPDATE EVERY 15 SECONDS */
+
+setInterval(
+    loadThingSpeakData,
+    15000
+);
+
 </script>
-    
-function showPage(pageId) {
-  document.querySelectorAll(".page").forEach(function(page) {
-    page.style.display = "none";
-  });
 
-  var page = document.getElementById(pageId);
 
-  if (page) {
-    page.style.display = "block";
-  }
-}
+</body>
+</html>
