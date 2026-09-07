@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Retail Intelligence</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #1f2937;
+}
+
+.header {
+    background: #111827;
+    color: white;
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 22px;
+}
+
+.status {
+    background: #16a34a;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+.sidebar {
+    width: 230px;
+    background: #1f2937;
+    color: white;
+    padding: 20px 10px;
+}
+
+.sidebar button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #d1d5db;
+    padding: 14px;
+    text-align: left;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+    background: #374151;
+    color: white;
+}
+
+.main {
+    flex: 1;
+    padding: 25px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-title h2 {
+    font-size: 25px;
+}
+
+.page-title p {
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.card .number {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.card small {
+    color: #16a34a;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.panel h3 {
+    margin-bottom: 15px;
+}
+
+.alert {
+    padding: 13px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #fff7ed;
+    border-left: 5px solid #f97316;
+}
+
+.success {
+    background: #f0fdf4;
+    border-left-color: #16a34a;
+}
+
+.danger {
+    background: #fef2f2;
+    border-left-color: #dc2626;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background: #f9fafb;
+}
+
+.good {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.low {
+    color: #f59e0b;
+    font-weight: bold;
+}
+
+.out {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.camera {
+    height: 330px;
+    background: #111827;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.camera-box {
+    border: 2px dashed #9ca3af;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.live-dot {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #dc2626;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.bar-container {
+    margin: 15px 0;
+}
+
+.bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.bar {
+    height: 14px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 10px;
+}
+
+.prediction {
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+    padding: 18px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.big-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.footer {
+    text-align: center;
+    color: #6b7280;
+    padding: 20px;
+    font-size: 13px;
+}
+
+@media(max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 650px) {
+    .sidebar {
+        width: 170px;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🛒 Smart Retail Intelligence</h1>
+    <div class="status">● System Online</div>
+</header>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <button class="active" onclick="showPage('home', this)">
+        🏠 Home
+    </button>
+
+    <button onclick="showPage('live', this)">
+        📹 Live Monitoring
+    </button>
+
+    <button onclick="showPage('inventory', this)">
+        📦 Inventory
+    </button>
+
+    <button onclick="showPage('silent', this)">
+        🤫 Silent Demand
+    </button>
+
+    <button onclick="showPage('analysis', this)">
+        📊 Analysis
+    </button>
+
+    <button onclick="showPage('prediction', this)">
+        🤖 AI Prediction
+    </button>
+
+</aside>
+
+<main class="main">
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+<div class="page-title">
+    <h2>Shopkeeper Dashboard</h2>
+    <p>Real-time smart retail monitoring system</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+    <h3>👥 Customers Today</h3>
+    <div class="number" id="customers">458</div>
+    <small>↑ 12% today</small>
+</div>
+
+<div class="card">
+    <h3>📦 Available Products</h3>
+    <div class="number">1,245</div>
+    <small>Inventory monitored</small>
+</div>
+
+<div class="card">
+    <h3>⚠ Low Stock</h3>
+    <div class="number">12</div>
+    <small>Needs attention</small>
+</div>
+
+<div class="card">
+    <h3>❌ Out of Stock</h3>
+    <div class="number">4</div>
+    <small>Immediate action</small>
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="panel">
+<h3>📈 Today's Store Status</h3>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>Customer Traffic</span>
+<span>78%</span>
+</div>
+<div class="bar">
+<div class="bar-fill" style="width:78%"></div>
+</div>
+</div>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>Inventory Availability</span>
+<span>86%</span>
+</div>
+<div class="bar">
+<div class="bar-fill" style="width:86%"></div>
+</div>
+</div>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>Rack Activity</span>
+<span>72%</span>
+</div>
+<div class="bar">
+<div class="bar-fill" style="width:72%"></div>
+</div>
+</div>
+
+</div>
+
+<div class="panel">
+<h3>🚨 Alerts</h3>
+
+<div class="alert danger">
+<strong>Juice</strong> is out of stock.
+</div>
+
+<div class="alert">
+<strong>Biscuits</strong> stock is low.
+</div>
+
+<div class="alert success">
+<strong>Milk</strong> stock updated successfully.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LIVE ================= -->
+
+<section id="live" class="page">
+
+<div class="page-title">
+<h2>📹 Live Monitoring</h2>
+<p>AI camera and customer activity monitoring</p>
+</div>
+
+<div class="grid">
+
+<div class="panel">
+
+<div class="camera">
+
+<div class="live-dot">● LIVE</div>
+
+<div class="camera-box">
+<h2>📹 CAMERA VIEW</h2>
+<p>AI Camera Feed</p>
+<p style="margin-top:10px;">
+Demo mode – camera will be connected later
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h3>AI Detection</h3>
+
+<div class="cards" style="grid-template-columns:1fr 1fr;">
+
+<div class="card">
+<h3>👤 Customers</h3>
+<div class="number">8</div>
+</div>
+
+<div class="card">
+<h3>🛒 Trolleys</h3>
+<div class="number">3</div>
+</div>
+
+<div class="card">
+<h3>📦 Products</h3>
+<div class="number">24</div>
+</div>
+
+<div class="card">
+<h3>🏪 Active Racks</h3>
+<div class="number">5</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= INVENTORY ================= -->
+
+<section id="inventory" class="page">
+
+<div class="page-title">
+<h2>📦 Inventory Monitoring</h2>
+<p>Smart shelf and product stock status</p>
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+<tr>
+<th>Product</th>
+<th>Rack</th>
+<th>Stock</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Milk</td>
+<td>Rack 01</td>
+<td>35</td>
+<td class="good">● Good</td>
+</tr>
+
+<tr>
+<td>Biscuits</td>
+<td>Rack 02</td>
+<td>8</td>
+<td class="low">● Low Stock</td>
+</tr>
+
+<tr>
+<td>Juice</td>
+<td>Rack 03</td>
+<td>0</td>
+<td class="out">● Out of Stock</td>
+</tr>
+
+<tr>
+<td>Rice</td>
+<td>Rack 04</td>
+<td>42</td>
+<td class="good">● Good</td>
+</tr>
+
+<tr>
+<td>Soap</td>
+<td>Rack 05</td>
+<td>18</td>
+<td class="good">● Good</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="grid">
+
+<div class="panel">
+<h3>⚖️ Smart Shelf Weight</h3>
+
+<p>Shelf 01: <strong>18.5 kg</strong></p>
+<p>Shelf 02: <strong>8.2 kg</strong></p>
+<p>Shelf 03: <strong>2.1 kg</strong></p>
+
+</div>
+
+<div class="panel">
+<h3>🚨 Stock Alerts</h3>
+
+<div class="alert danger">
+Juice – Restock immediately
+</div>
+
+<div class="alert">
+Biscuits – Reorder required
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SILENT DEMAND ================= -->
+
+<section id="silent" class="page">
+
+<div class="page-title">
+<h2>🤫 Silent Demand</h2>
+<p>Products customers show interest in but do not purchase</p>
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+<tr>
+<th>Product</th>
+<th>Picked</th>
+<th>Returned</th>
+<th>Interest</th>
+<th>Conversion</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Milk</td>
+<td>20</td>
+<td>8</td>
+<td>High</td>
+<td>60%</td>
+</tr>
+
+<tr>
+<td>Biscuits</td>
+<td>15</td>
+<td>10</td>
+<td>High</td>
+<td>33%</td>
+</tr>
+
+<tr>
+<td>Juice</td>
+<td>9</td>
+<td>7</td>
+<td>Medium</td>
+<td>22%</td>
+</tr>
+
+<tr>
+<td>Chocolate</td>
+<td>18</td>
+<td>5</td>
+<td>High</td>
+<td>72%</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="panel">
+
+<h3>💡 Silent Demand Insight</h3>
+
+<div class="prediction">
+<strong>Biscuits</strong> have high customer interest but low purchase conversion.
+<br><br>
+Possible reason: price, packaging or product preference should be investigated.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ANALYSIS ================= -->
+
+<section id="analysis" class="page">
+
+<div class="page-title">
+<h2>📊 Retail Analysis</h2>
+<p>Customer and product demand analytics</p>
+</div>
+
+<div class="grid">
+
+<div class="panel">
+
+<h3>👥 Customer Traffic</h3>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>9 AM</span><span>35</span>
+</div>
+<div class="bar">
+<div class="bar-fill" style="width:30%"></div>
+</div>
+</div>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>11 AM</span><span>85</span>
+</div>
+<div class="bar">
+<div class="bar-fill" style="width:70%"></div>
+</div>
+</div>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>1 PM</span><span>120</span>
+</div>
+<div class="bar">
+<div class="bar-fill" style="width:100%"></div>
+</div>
+</div>
+
+<div class="bar-container">
+<div class="bar-label">
+<span>5 PM</span><span>95</span>
+</
