@@ -801,3 +801,14 @@ async function loadThingSpeakData() {
 loadThingSpeakData();
 setInterval(loadThingSpeakData, 15000);
 </script>
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(function(page) {
+    page.classList.remove("active");
+  });
+
+  const selectedPage = document.getElementById(pageId);
+
+  if (selectedPage) {
+    selectedPage.classList.add("active");
+  }
+}
